@@ -449,7 +449,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	@Override
 	public boolean onKey (View v, int keyCode, android.view.KeyEvent e) {
 		for (int i = 0, n = keyListeners.size(); i < n; i++)
-			keyListeners.get(i).onKey(v, keyCode, e);
+			if(keyListeners.get(i).onKey(v, keyCode, e)) return true;
 
 		synchronized (this) {
 			char character = (char)e.getUnicodeChar();
@@ -765,7 +765,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	public void addKeyListener (OnKeyListener listener) {
 		keyListeners.add(listener);
 	}
-
+	
 	/** Our implementation of SensorEventListener. Because Android doesn't like it when we register more than one Sensor to a single
 	 * SensorEventListener, we add one of these for each Sensor. Could use an anonymous class, but I don't see any harm in
 	 * explicitly defining it here. Correct me if I am wrong. */
