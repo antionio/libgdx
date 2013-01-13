@@ -223,6 +223,10 @@ public class IOSApplication extends UIApplicationDelegate implements Application
 		listener.dispose();
 		Gdx.gl.glFlush();
 	}
+	
+	public UIViewController getUIViewController() {
+		return uiViewController;
+	}
 
 	@Override
 	public Graphics getGraphics () {
